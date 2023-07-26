@@ -2,9 +2,10 @@ import Card from './Card';
 
 export default function Cards(props) {
    return <div>
-      {props.characters.map ((elem)=>{
+      {props.characters.map ((elem, item  ) => {
          return <Card 
-         key={elem.id}
+         key={item}
+         // key={elem.id}
          name={elem.name}
          status={elem.status} 
          species={elem.species}
@@ -13,6 +14,6 @@ export default function Cards(props) {
          onClose={() => window.alert('Emulamos que se cierra la card')}
          image={elem.image}
          />
-      })}
-   </div>;
+         })}
+   </div>
 }
