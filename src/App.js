@@ -10,6 +10,9 @@ function App() {
    const [characters, setCharacters] = useState([]);
 
    function onSearch(id) {
+      if (cardDisplay(id)) {
+         window.alert("Card ya mostrada: " + id)
+      }else {
       axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
@@ -17,36 +20,29 @@ function App() {
             console.error()
             window.alert('¡No hay personajes con este ID!');
          }
-      });
-   }
+      })}
+   };
 
-   //mi codigo anterior
-   // function onSearch (id) {
-   //    const example = {
-   //       id: 1,
-   //       name: 'Rick Sanchez' + id,
-   //       status: 'Alive',
-   //       species: 'Human',
-   //       gender: 'Male',
-   //       origin: {
-   //          name: 'Earth (C-137)',
-   //          url: 'https://rickandmortyapi.com/api/location/1',
-   //       },
-   //       image: 'https://rickandmortyapi.com/api/character/avatar/1.jpeg',
-   //    };
-   //    const nuevoArray = [...characters, example]
-   //     setCharacters(nuevoArray)
-   // };
+   function cardDisplay (identificador) {
+      //devuelve true or false si el personaje esta mostrado en pantalla
+      let result =false;
+      for (let index = 0; index < characters.length; index++) {
+         if (characters[index].id === Number(identificador)) result = true;
+      }
+      return result;
+   };
+
 
    function onClose (id) {
-      
+      const arrayFilter = characters.filter (person => person.id !== Number(id))
+      setCharacters(arrayFilter)
    };
 
 
    return (
       <div className='App'>
          <Nav onSearch={onSearch}/>
-         <Cards characters={characters} />
+         <Cards characters={characters} onClose={onClose}/>
 
       </div>
    );

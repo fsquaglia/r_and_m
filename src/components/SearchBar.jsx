@@ -7,7 +7,9 @@ export default function SearchBar(props) {
       setId (event.target.value)
       console.log(event.target.value)
    };
+   
    let funcion = props.onSearch
+   
    return (
       <div>
          <input type='search' onChange={handleChange}/>

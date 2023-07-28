@@ -5,13 +5,13 @@ export default function Cards(props) {
       {props.characters.map ((elem, item  ) => {
          return <Card 
          key={item}
-         // key={elem.id}
+         id={elem.id}
          name={elem.name}
          status={elem.status} 
          species={elem.species}
          gender={elem.gender}
          origin={elem.origin}
-         onClose={() => window.alert('Emulamos que se cierra la card')}
+         onClose={props.onClose}
          image={elem.image}
          />
          })}
