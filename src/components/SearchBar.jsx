@@ -10,10 +10,15 @@ export default function SearchBar(props) {
    
    let funcion = props.onSearch
    
+   function random(min, max) {
+      return Math.floor((Math.random() * (max - min + 1)) + min);
+   };
+
    return (
       <div>
          <input type='search' onChange={handleChange}/>
          <button onClick={()=>funcion(id)}>Agregar</button>
+         <button onClick={()=>funcion(random(1, 826))}>Aleatorio</button>
       </div>
    );
 }
