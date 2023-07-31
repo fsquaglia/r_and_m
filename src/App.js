@@ -3,6 +3,9 @@ import Nav from './components/Nav.jsx';
 import Cards from './components/Cards.jsx';
 import { useState } from 'react';
 import axios from 'axios';
+import { Routes, Route } from 'react-router-dom';
+import ViewAbout from './components/ViewAbout';
+import Detail from './components/Detail';
 
 
 function App() {
@@ -17,7 +20,7 @@ function App() {
          if (data.name) {
             setCharacters((oldChars) => [...oldChars, data]);
          } else {
-            console.error()
+
             window.alert('¡No hay personajes con este ID!');
          }
       })}
@@ -41,8 +44,14 @@ function App() {
 
    return (
       <div className='App'>
+
          <Nav onSearch={onSearch}/>
-         <Cards characters={characters} onClose={onClose}/>
+
+         <Routes>
+            <Route path="/" element={<Cards characters={characters} onClose={onClose}/>} />
+            <Route path="/viewAbout" element={<ViewAbout/>}/>
+            <Route path="/detail/:id" element={<Detail/>}/>
+         </Routes>
 
       </div>
    );
