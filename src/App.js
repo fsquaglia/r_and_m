@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 import ViewAbout from './components/ViewAbout';
 import Detail from './components/Detail';
+import Error from './components/Error';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <Route path="/" element={<Cards characters={characters} onClose={onClose}/>} />
             <Route path="/viewAbout" element={<ViewAbout/>}/>
             <Route path="/detail/:id" element={<Detail/>}/>
+            <Route path="*" element={<Error />} />
          </Routes>
 
       </div>
