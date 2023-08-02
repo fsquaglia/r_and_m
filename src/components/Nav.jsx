@@ -7,7 +7,7 @@ function Nav(props) {
 
     return (
        <div>
-            <NavLink to="/">
+            <NavLink to="/home">
                 <button>Home</button>
             </NavLink>
             
