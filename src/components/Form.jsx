@@ -1,7 +1,8 @@
 import React, { useState } from "react"
 import imgRM from "../Assets/rickandmorty01.png"
+import validation from "../validation"
 
-export default function Form (){
+export default function Form (props){
    
     //estados iniciales
     const [userData, setUserData] = useState({
@@ -18,19 +19,28 @@ export default function Form (){
         const propiedad = event.target.name
         const valor = event.target.value
         setUserData({...userData, [propiedad]:valor})
-        // setErrors(validate({...inputs, [propiedad]:valor}))
+        setErrors(validation({...userData, [propiedad]:valor}))
       };    
+    
+      const handleSubmit = (event) => {
+        event.preventDefault();
+        props.login(userData)
+      };
 
+    
+      // return de componente principal
     return (
         <div>
             <br />
-            <form action="">
+            <form onSubmit={handleSubmit}>
             <img src={imgRM} alt="img rick and morty" width="500px"/> <br />
             <label htmlFor="">Email: </label>
-            <input type="text" name="email" id="" value={userData.email} onChange={handleChange}/> <br />
+            <input type="text" name="email" id="" value={userData.email} onChange={handleChange}/> 
+            <p style={{color:'red'}}>{errors.email}</p><br />
 
             <label htmlFor="">Password: </label>
-            <input type="text" name="password" id="" value={userData.password} onChange={handleChange}/><br />
+            <input type="text" name="password" id="" value={userData.password} onChange={handleChange}/>
+            <p style={{color:'red'}} >{errors.password}</p><br />
 
             <button type="submit">Submit</button>
         </form>

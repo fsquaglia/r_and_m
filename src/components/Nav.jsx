@@ -10,10 +10,12 @@ function Nav(props) {
             <NavLink to="/home">
                 <button>Home</button>
             </NavLink>
-            
+                <span> </span>
             <NavLink to="/ViewAbout">
                 <button>About</button>
             </NavLink>
+                <span> </span>
+            <button onClick={props.onClick}>Logout</button>
 
            <SearchBar onSearch={props.onSearch} />
            
