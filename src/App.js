@@ -16,18 +16,21 @@ function App() {
    const [characters, setCharacters] = useState([]);
 
    function onSearch(id) {
-      if (cardDisplay(id)) {
-         window.alert("Card ya mostrada: " + id)
-      }else {
-      axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
-         if (data.name) {
-            setCharacters((oldChars) => [...oldChars, data]);
-         } else {
+      if (id>826) {
+         window.alert ("La card debe ser de 1 a 826")
+      } else {
+         if (cardDisplay(id)) {
+            window.alert("Card ya mostrada: " + id)
+         }else {
+         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+            if (data.name) {
+               setCharacters((oldChars) => [...oldChars, data]);
+            } else {
 
-            window.alert('¡No hay personajes con este ID!');
-         }
-      })}
-   };
+               window.alert('¡No hay personajes con este ID!');
+            }
+         })}
+   }};
 
    function cardDisplay (identificador) {
       //devuelve true or false si el personaje esta mostrado en pantalla
