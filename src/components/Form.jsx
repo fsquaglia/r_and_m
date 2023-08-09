@@ -39,7 +39,7 @@ export default function Form (props){
             <p style={{color:'red'}}>{errors.email}</p><br />
 
             <label htmlFor="">Password: </label>
-            <input type="text" name="password" id="" value={userData.password} onChange={handleChange}/>
+            <input type="password" name="password" id="" value={userData.password} onChange={handleChange}/>
             <p style={{color:'red'}} >{errors.password}</p><br />
 
             <button type="submit">Submit</button>
