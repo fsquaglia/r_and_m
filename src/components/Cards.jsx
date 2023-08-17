@@ -1,7 +1,18 @@
 import Card from './Card';
+import { styled } from 'styled-components';
 
+const NavContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-around; 
+  margin:0px -10px;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+  background-color: #272b33;
+`;
 export default function Cards(props) {
-   return <div>
+   return <NavContainer>
       {props.characters.map ((elem, item  ) => {
          return <Card 
          key={item}
@@ -15,5 +26,5 @@ export default function Cards(props) {
          image={elem.image}
          />
          })}
-   </div>
+   </NavContainer>
 }

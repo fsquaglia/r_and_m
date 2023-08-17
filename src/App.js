@@ -9,11 +9,13 @@ import Detail from './components/Detail';
 import Error from './components/Error';
 import Home from "./components/Home";
 import Form from './components/Form';
+import Favorites from './components/Favorites';
 
 
 function App() {
-
+   //aquí voy a ir guardando los personajes que descargo de la API
    const [characters, setCharacters] = useState([]);
+
 
    function onSearch(id) {
       if (id>826) {
@@ -47,10 +49,8 @@ function App() {
       setCharacters(arrayFilter)
    };
 
-   const locationBarra = (useLocation().pathname === '/') ? true : false
 
-
-   //loguearse
+   //loguearse, fn login se pasará por props al componente Form
    let EMAIL = "fernandosquaglia@gmail.com"
    let PASSWORD = "mi.pass"
    const [access, setAcces] = useState(false);
@@ -65,31 +65,30 @@ function App() {
       };  
    };
 
-   useEffect(() => {
-      !access && navigate('/');
-   }, [access]);
+   // useEffect(() => {
+   //    !access && navigate('/');
+   // }, [access]);
 
-      //logout
+   //logout que se pasa por props al componente Nav
    function logout () {
       setAcces(false);
-      navigate('/form')
+      navigate('/')
    };
    
    //return del componente principal
    return (
-      <div className='App'>
+      <div className='App' style={{ backgroundColor: "#272b33" }}>
          
 
-         <div hidden={locationBarra}>
-            <Nav onSearch={onSearch} onClick={logout}/>
-         </div>
-         
+         {!(useLocation().pathname === '/') ? <Nav onSearch={onSearch} onClick={logout}/> : null}
+
          <Routes>
             <Route path="/home" element={<Home characters={characters} onClose={onClose} />} />
             <Route path="/viewAbout" element={<ViewAbout/>}/>
             <Route path="/detail/:id" element={<Detail/>}/>
-            <Route path="*" element={<Error />} />
+            <Route path='/favorites' element={<Favorites/>}/>
             <Route path='/' element={<Form login={login}/>}/>
+            <Route path='*' element={<Error/>} />
          </Routes>
 
       </div>

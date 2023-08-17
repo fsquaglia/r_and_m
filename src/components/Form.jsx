@@ -1,7 +1,39 @@
 import React, { useState } from "react"
 import imgRM from "../Assets/rickandmorty01.png"
 import validation from "../validation"
+import { styled } from "styled-components";
 
+//estilos css
+
+const DivForm = styled.div`
+  color: white;
+  font-family: 'Calibri', sans-serif; 
+  font-size: 1em; 
+  align-items: center;
+`;
+const Botton = styled.button`
+  width: 7em;
+  margin: 0.5em;
+  height: 2.5em;
+  background-color: #ffffff; 
+  border: 1px solid #ff9800; 
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+  font-weight: bold; 
+  &:hover {
+    background-color: #ff9800; 
+    color: white; 
+  }
+`;
+const Input = styled.input`
+   width: 20em;
+   margin: 0.5em;
+   height: 2em;
+   background-color: #ffffff; 
+   border: 1px solid #ff9800; 
+   border-radius: 5px;    
+
+`;
 export default function Form (props){
    
     //estados iniciales
@@ -30,19 +62,19 @@ export default function Form (props){
     
       // return de componente principal
     return (
-        <div>
+        <DivForm>
             <br />
             <form onSubmit={handleSubmit}>
             <img src={imgRM} alt="img rick and morty" width="500px"/> <br />
             <label htmlFor="">Email: </label>
-            <input type="text" name="email" id="" value={userData.email} onChange={handleChange}/> 
-            <p style={{color:'red'}}>{errors.email}</p><br />
+            <Input type="text" name="email" id="email" value={userData.email} onChange={handleChange}/> 
+            <p style={{color:'#ff9800'}}>{errors.email}</p><br />
 
             <label htmlFor="">Password: </label>
-            <input type="password" name="password" id="" value={userData.password} onChange={handleChange}/>
-            <p style={{color:'red'}} >{errors.password}</p><br />
+            <Input type="password" name="password" id="password" value={userData.password} onChange={handleChange}/>
+            <p style={{color:'#ff9800'}} >{errors.password}</p><br />
 
-            <button type="submit">Submit</button>
+            <Botton type="submit">Submit</Botton>
         </form>
-        </div>)
+        </DivForm>)
 };
