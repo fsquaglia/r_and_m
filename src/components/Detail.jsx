@@ -39,20 +39,23 @@ function Detail () {
     const {id} = useParams();
     const [character, setCharacter] = useState ({});
 
+
     useEffect(() => {
-        axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+        if (id<=826) {
+          axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
            if (data.name) {
               setCharacter(data);
            } else {
               window.alert('No hay personajes con ese ID');
            }
         });
-        return setCharacter({});
+        return setCharacter({});}
+
      }, [id]);
 
 
-     if (!character.name ) {
-        return <div>No data available.</div>;
+     if (!character.name) {
+        return <div><h2 style={{color: 'white'}}>No data available.</h2></div>;
         }
 
     return (
