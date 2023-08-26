@@ -42,7 +42,8 @@ function Detail () {
 
     useEffect(() => {
         if (id<=826) {
-          axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+          //antigua https://rickandmortyapi.com/api/character/${id}
+          axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
            if (data.name) {
               setCharacter(data);
            } else {

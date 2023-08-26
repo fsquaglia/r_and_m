@@ -1,9 +1,10 @@
-import { ADD_FAV, REMOVE_FAV, FILTER, ORDER } from "./actions";
+import { ADD_FAV, REMOVE_FAV, FILTER, ORDER, NAVSHOWVAR } from "./actions";
 
 const initialState = {
     myFavorites:[],
     allFavorites: [],
-    detail: {}
+    detail: {},
+    navShow: true,
 };
 
 
@@ -38,7 +39,8 @@ const rootReducer = (state=initialState, action) => {
               ...state,
               myFavorites: favoritesOrdered
           };
-
+        case NAVSHOWVAR:
+            return {...state, navShow: action.payload}
         default:
             return state;
     }

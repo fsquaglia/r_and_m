@@ -2,6 +2,7 @@ export const ADD_FAV = "add_fav"
 export const REMOVE_FAV = "remove_fav"
 export const FILTER = 'filter'
 export const ORDER = 'order'
+export const NAVSHOWVAR = 'navShowVar'
 
 export const addFav = (personaje) => {
     return {type:ADD_FAV, payload:personaje}    
@@ -23,5 +24,12 @@ export const orderCards = (order) => {
     return {
         type: ORDER,
         payload: order,
+    }
+};
+
+export const navShowAction = (value) => {
+    return {
+        type: NAVSHOWVAR,
+        payload: value,
     }
 };

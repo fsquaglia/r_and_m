@@ -1,6 +1,4 @@
 import './App.css';
-import Nav from './components/Nav.jsx';
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
@@ -10,6 +8,8 @@ import Error from './components/Error';
 import Home from "./components/Home";
 import Form from './components/Form';
 import Favorites from './components/Favorites';
+import Nav from './components/Nav'
+import { useSelector } from 'react-redux';
 
 
 function App() {
@@ -24,7 +24,8 @@ function App() {
          if (cardDisplay(id)) {
             window.alert("Card ya mostrada: " + id)
          }else {
-         axios(`https://rickandmortyapi.com/api/character/${id}`).then(({ data }) => {
+            //antigua https://rickandmortyapi.com/api/character/${id}
+         axios(`http://localhost:3001/rickandmorty/character/${id}`).then(({ data }) => {
             if (data.name) {
                setCharacters((oldChars) => [...oldChars, data]);
             } else {
@@ -65,9 +66,9 @@ function App() {
       };  
    };
 
-   // useEffect(() => {
-   //    !access && navigate('/');
-   // }, [access]);
+   useEffect(() => {
+      !access && navigate('/');
+   }, [access]);
 
    //logout que se pasa por props al componente Nav
    function logout () {
@@ -75,12 +76,14 @@ function App() {
       navigate('/')
    };
    
+   const navShow = useSelector(state => state.navShow)
+   
    //return del componente principal
    return (
       <div className='App' style={{ backgroundColor: "#272b33" }}>
          
 
-         {!(useLocation().pathname === '/') ? <Nav onSearch={onSearch} onClick={logout}/> : null}
+         {(useLocation().pathname !== '/' && navShow) ? <Nav  onSearch={onSearch} onClick={logout}/> : null}
 
          <Routes>
             <Route path="/home" element={<Home characters={characters} onClose={onClose} />} />
