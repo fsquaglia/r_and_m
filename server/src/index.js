@@ -1,40 +1,35 @@
 const PORT = 3001;
-const express = require ('express')
-const router = require ('./routes/index')
+const express = require("express");
+const router = require("./routes/index");
 const server = express();
+const { conn } = require("./DB_connection");
 
 server.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Credentials', 'true');
-    res.header(
-       'Access-Control-Allow-Headers',
-       'Origin, X-Requested-With, Content-Type, Accept'
-    );
-    res.header(
-       'Access-Control-Allow-Methods',
-       'GET, POST, OPTIONS, PUT, DELETE'
-    );
-    next();
- });
-
- server.use(express.json());
- server.use("/rickandmorty", router)
-
-
-
-//inicializar el servidor
-server.listen(PORT, () => {
-    console.log('Server raised in port ' + PORT)
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  next();
 });
 
+server.use(express.json());
+server.use("/rickandmorty", router);
 
-
-
-
-
-
-
-
+conn
+  .sync({ force: true }) //{ alter: true }
+  .then(() => {
+    //inicializar el servidor
+    server.listen(PORT, () => {
+      console.log("Server raised in port " + PORT);
+    });
+  })
+  .catch((err) => {
+    console.log("No pudimos conectar con la base de datos!!");
+    console.log(err.message);
+  });
 
 /*
 SIN EXPRESS
@@ -73,4 +68,3 @@ if (url.includes("/rickandmorty/character")) {
 })
 .listen(3001, "localhost")
 */
-
