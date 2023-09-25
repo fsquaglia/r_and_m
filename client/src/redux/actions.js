@@ -36,7 +36,7 @@ export const addFav = (character) => {
         payload: data,
       });
     } catch (error) {
-      window.alert("Hubo un error");
+      window.alert("Hubo un error al agregar character");
     }
   };
 };
@@ -53,7 +53,7 @@ export const removeFav = (id) => {
         payload: data,
       });
     } catch (error) {
-      window.alert("Hubo un error");
+      window.alert("Hubo un error al remover character por id");
     }
   };
 };

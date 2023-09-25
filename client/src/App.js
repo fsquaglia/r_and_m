@@ -18,6 +18,7 @@ function App() {
   async function onSearch(id) {
     //si no colocamos un numero para buscar card no hacer nada
     if (!id) {
+      window.alert("Ingresa un id!");
       return;
     }
 
