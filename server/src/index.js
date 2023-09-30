@@ -19,7 +19,7 @@ server.use(express.json());
 server.use("/rickandmorty", router);
 
 conn
-  .sync({ force: true }) //{ alter: true }
+  .sync({ force: true }) //{ alter: true } { force: true }
   .then(() => {
     //inicializar el servidor
     server.listen(PORT, () => {
